@@ -3,37 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urgent Question! 🥺</title>
+    <title>For Hiba Nazrah ✨</title>
     <style>
-        body { font-family: 'Arial', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #ffe4e1; margin: 0; overflow: hidden; }
-        h1 { color: #ff69b4; text-align: center; }
-        .buttons { position: relative; width: 300px; height: 100px; }
-        button { padding: 15px 30px; font-size: 1.2rem; border-radius: 10px; border: none; cursor: pointer; position: absolute; }
-        #yesBtn { background-color: #ff69b4; color: white; left: 0; }
-        #noBtn { background-color: #808080; color: white; right: 0; transition: 0.2s; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%);
+            margin: 0; 
+            overflow: hidden;
+            text-align: center;
+        }
+        .container { padding: 20px; transition: all 0.5s ease; }
+        h1 { color: #880e4f; font-size: 2rem; margin-bottom: 30px; line-height: 1.4; }
+        .buttons { position: relative; width: 100%; max-width: 400px; height: 150px; margin: 0 auto; }
+        button { 
+            padding: 15px 35px; 
+            font-size: 1.1rem; 
+            border-radius: 50px; 
+            border: none; 
+            cursor: pointer; 
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        #yesBtn { background-color: #ff4081; color: white; position: relative; z-index: 10; }
+        #yesBtn:hover { transform: scale(1.1); background-color: #f50057; }
+        #noBtn { background-color: #bdbdbd; color: white; position: absolute; transition: 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
+        .success-message { display: none; color: #ad1457; }
+        .success-message h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .success-message p { font-size: 1.2rem; line-height: 1.6; color: #4a148c; }
     </style>
 </head>
 <body>
 
-    <h1>Can I be your cringe friend? 👉👈</h1>
-    <div class="buttons">
-        <button id="yesBtn" onclick="celebrate()">YES</button>
-        <button id="noBtn" onmouseover="moveButton()">NO</button>
+    <div id="mainContent" class="container">
+        <h1>Hey Hiba Nazrah,<br>Can I be your cringe friend? 👉👈</h1>
+        <div class="buttons">
+            <button id="yesBtn" onclick="celebrate()">YES!</button>
+            <button id="noBtn" onmouseover="moveButton()">No</button>
+        </div>
+    </div>
+
+    <div id="successContent" class="container success-message">
+        <h2>You're stuck with me! 💖</h2>
+        <p>They say "cringe" is just another word for being unapologetically yourself. <br><br>
+        <b>Hiba Nazrah</b>, thank you for saying yes. Prepare for a lifetime of bad jokes, endless memes, and someone who's always in your corner. Let the chaos begin! 🚀✨</p>
     </div>
 
     <script>
         function moveButton() {
             const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            const container = document.body;
+            const maxX = container.clientWidth - btn.clientWidth;
+            const maxY = container.clientHeight - btn.clientHeight;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
             btn.style.position = 'fixed';
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
         }
 
         function celebrate() {
-            alert("YAY! Expect 100 memes per hour. No refunds! 💖");
-            document.body.innerHTML = "<h1>It's official! 🕺💃</h1><p>Check your DMs for cringe.</p>";
+            document.getElementById('mainContent').style.display = 'none';
+            const success = document.getElementById('successContent');
+            success.style.display = 'block';
+            
+            // Adding a little extra magic
+            for(let i=0; i<50; i++) {
+                createEmoji();
+            }
+        }
+
+        function createEmoji() {
+            const emoji = document.createElement('div');
+            emoji.innerText = ['💖', '✨', '🌸', '😂', '💫'][Math.floor(Math.random() * 5)];
+            emoji.style.position = 'fixed';
+            emoji.style.left = Math.random() * 100 + 'vw';
+            emoji.style.top = '100vh';
+            emoji.style.fontSize = Math.random() * 20 + 20 + 'px';
+            emoji.style.zIndex = '100';
+            emoji.style.transition = `transform ${Math.random() * 2 + 1}s linear, opacity 2s`;
+            document.body.appendChild(emoji);
+
+            setTimeout(() => {
+                emoji.style.transform = `translateY(-120vh) rotate(${Math.random() * 360}deg)`;
+                emoji.style.opacity = '0';
+            }, 100);
+
+            setTimeout(() => emoji.remove(), 3000);
         }
     </script>
 </body>
